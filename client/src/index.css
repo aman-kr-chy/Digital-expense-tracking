@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #10b981;
+  --color-primary-dark: #059669;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased font-sans;
+  }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.card-hover {
+  @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.friends-art__scene {
+  transform-origin: center;
+  transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.friends-art__person,
+.friends-art__coin,
+.friends-art__heart {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 350ms ease;
+}
+
+.friends-art:hover .friends-art__scene {
+  transform: translateY(-3px) rotate(-1deg);
+}
+
+.friends-art:hover .friends-art__person--blue,
+.friends-art--celebrating .friends-art__person--blue {
+  transform: translateY(-5px);
+}
+
+.friends-art:hover .friends-art__person--orange,
+.friends-art--celebrating .friends-art__person--orange {
+  transform: translateY(-4px);
+}
+
+.friends-art:hover .friends-art__coin,
+.friends-art--celebrating .friends-art__coin {
+  transform: translateY(-5px) rotate(10deg);
+}
+
+.friends-art--celebrating .friends-art__heart {
+  animation: friends-heart 600ms ease-in-out infinite alternate;
+}
+
+.friends-art--celebrating .friends-art__sparkle {
+  animation: friends-sparkle 700ms ease-in-out infinite alternate;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes friends-heart {
+  to { transform: scale(1.2) rotate(8deg); }
+}
+
+@keyframes friends-sparkle {
+  to { opacity: 0.45; transform: scale(0.8) rotate(20deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .friends-art__scene,
+  .friends-art__person,
+  .friends-art__coin,
+  .friends-art__heart,
+  .friends-art__sparkle {
+    animation: none !important;
+    transition: none;
+  }
+}
